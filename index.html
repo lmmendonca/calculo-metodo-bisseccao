@@ -1,4 +1,5 @@
 <html lang="pt-br">
+
 <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
@@ -18,7 +19,41 @@
 
         <v-content>
             <v-container fluid>
-                <p>{{hello}}</p>
+
+                <v-row>
+                    <v-col cols="10" sm="6" md="1">
+                        <h1>f(x) = </h1>
+                    </v-col>
+                    <v-col cols="10" sm="6" md="1">
+                        <v-text-field label="X5" outlined type="number" v-model="x5"></v-text-field>
+                    </v-col>
+                    <v-col cols="10" sm="6" md="1">
+                        <v-text-field label="X4" outlined type="number" v-model="x5"></v-text-field>
+                    </v-col>
+                    <v-col cols="10" sm="6" md="1">
+                        <v-text-field label="X3" outlined type="number" v-model="x5"></v-text-field>
+                    </v-col>
+                    <v-col cols="10" sm="6" md="1">
+                        <v-text-field label="X2" outlined type="number" v-model="x5"></v-text-field>
+                    </v-col>
+                    <v-col cols="10" sm="6" md="1">
+                        <v-text-field label="X" outlined type="number" v-model="x5"></v-text-field>
+                    </v-col>
+                    <v-col cols="10" sm="6" md="1">
+                        <v-text-field label="Numero" outlined type="number" v-model="x5"></v-text-field>
+                    </v-col>
+                    <v-col cols="10" sm="6" md="1">
+                        <v-btn color="dark">Calcular</v-btn>
+                    </v-col>
+
+                </v-row>
+
+                <v-row>
+                    <v-col cols="10" sm="6" md="1">
+                        <v-text-field label="E" outlined type="number" v-model="x5"></v-text-field>
+                    </v-col>
+
+                </v-row>
             </v-container>
         </v-content>
     </div>
@@ -30,9 +65,23 @@
         new Vue({
             el: '#app',
             vuetify: new Vuetify(),
-            data: { hello: 'Hello World!' },
+            data: {
+                x5: "a",
+                x4: "a",
+                x3: "a",
+                x2: "a",
+                x1: "a",
+                x: "a",
+            },
+
 
         })
+
+
+        function a() {
+            return "hello";
+        }
     </script>
 </body>
+
 </html>
