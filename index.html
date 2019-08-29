@@ -1,87 +1,52 @@
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-    <title>Calculo Numerico</title>
+    <meta charset="UTF-8">
+    <title>Método da Bissecção</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./calculo-bisseccao.js"></script>
 </head>
 
-<body style="font-family: 'Roboto', sans-serif">
+<body>
     <div id="app">
-        <v-app-bar dark>
-            <v-toolbar-title class="font-weight-black">
-                Calculo Numerico
-            </v-toolbar-title>
-        </v-app-bar>
-
-        <v-content>
-            <v-container fluid>
-
-                <v-row>
-                    <v-col cols="10" sm="6" md="1">
-                        <h1>f(x) = </h1>
-                    </v-col>
-                    <v-col cols="10" sm="6" md="1">
-                        <v-text-field label="X5" outlined type="number" v-model="x5"></v-text-field>
-                    </v-col>
-                    <v-col cols="10" sm="6" md="1">
-                        <v-text-field label="X4" outlined type="number" v-model="x5"></v-text-field>
-                    </v-col>
-                    <v-col cols="10" sm="6" md="1">
-                        <v-text-field label="X3" outlined type="number" v-model="x5"></v-text-field>
-                    </v-col>
-                    <v-col cols="10" sm="6" md="1">
-                        <v-text-field label="X2" outlined type="number" v-model="x5"></v-text-field>
-                    </v-col>
-                    <v-col cols="10" sm="6" md="1">
-                        <v-text-field label="X" outlined type="number" v-model="x5"></v-text-field>
-                    </v-col>
-                    <v-col cols="10" sm="6" md="1">
-                        <v-text-field label="Numero" outlined type="number" v-model="x5"></v-text-field>
-                    </v-col>
-                    <v-col cols="10" sm="6" md="1">
-                        <v-btn color="dark">Calcular</v-btn>
-                    </v-col>
-
-                </v-row>
-
-                <v-row>
-                    <v-col cols="10" sm="6" md="1">
-                        <v-text-field label="E" outlined type="number" v-model="x5"></v-text-field>
-                    </v-col>
-
-                </v-row>
-            </v-container>
-        </v-content>
+        <h1>Método da Bissecção</h1>
+        <div class="expressao">
+            f(x) =
+            <input type="number" id="x5"> x<sup>5</sup>
+            <input type="number" id="x4"> x<sup>4</sup>
+            <input type="number" id="x3"> x<sup>3</sup>
+            <input type="number" id="x2"> x<sup>2</sup>
+            <input type="number" id="x1"> x<sup>1</sup>
+            <input type="number" id="number">
+        </div>
+        <div class="epsilon">
+            E = 10 <sup><input type="number" id="epsilon"></sup>
+        </div>
+        <button id="btn">Calcular</button>
+        <br>
+        <br>
+        <label>Resultado : </label>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>DATA</th>
+                    <th>QUANTIDADE</th>
+                    <th>VALOR</th>
+                    <th>VOLUME</th>
+                </tr>
+                <tr>
+                        <th>DATA</th>
+                        <th>QUANTIDADE</th>
+                        <th>VALOR</th>
+                        <th>VOLUME</th>
+                    </tr>
+            </thead>
+            <tbody>
+        </table>
+        <p id="test"></p>
     </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
-    <script>
-        new Vue({
-            el: '#app',
-            vuetify: new Vuetify(),
-            data: {
-                x5: "a",
-                x4: "a",
-                x3: "a",
-                x2: "a",
-                x1: "a",
-                x: "a",
-            },
-
-
-        })
-
-
-        function a() {
-            return "hello";
-        }
-    </script>
 </body>
 
 </html>
