@@ -1,34 +1,79 @@
-function resolver_equacao(x5, x4, x3, x2, x1, i) {
-    x1 = parseFloat(x1 * Math.pow(i, 1));
-    x2 = parseFloat(x2 * Math.pow(i, 2));
-    x3 = parseFloat(x3 * Math.pow(i, 3));
-    x4 = parseFloat(x4 * Math.pow(i, 4));
-    x5 = parseFloat(x5 * Math.pow(i, 5));
-    return parseFloat(x5 + x4 + x3 + x2 + x1);
+function resolver_equacao(x5, x4, x3, x2, x1, numero, valor_x) {
+	x1 = parseFloat(x1 * Math.pow(valor_x, 1));
+	x2 = parseFloat(x2 * Math.pow(valor_x, 2));
+	x3 = parseFloat(x3 * Math.pow(valor_x, 3));
+	x4 = parseFloat(x4 * Math.pow(valor_x, 4));
+	x5 = parseFloat(x5 * Math.pow(valor_x, 5));
+	var somatorio_x = x5 + x4 + x3 + x2 + x1;
+	somatorio_x += numero;
+	return somatorio_x;
 }
 
-function gera_intervalo(listresult) {
-    listaIntervalo = [];
-    sinalResultComparator = Math.sign(listresult[0]);
-    for (i = 1; i <= listresult.length(); i++) {
-        sinalResult = Math.abs(listresult[i]);
-        if (sinalResultComparator != sinalResult) {
-            listaIntervalo.push([sinalResultComparator, sinalResult]);
-            sinalResultComparator =  sinalResult;
-        }
-    }
-    return listaIntervalo;
-    
+/**
+ * Metodo pega lista com valores
+ * da equacao resolvido e acha a raiz
+ * @param {lista com valores} listresult
+ */
+function find_intervalo_raiz(list_valores) {
+	listaIntervalo = [];
+	sinalResultComparator = Math.sign(list_valores[0].valor);
+	indiceA = list_valores[0].indice;
+	for (i = 1; i <= list_valores.length; i++) {
+		sinalResult = Math.sign(list_valores[i].valor);
+		indiceB = list_valores[i].indice;
+		if (sinalResultComparator != sinalResult) {
+			listaIntervalo.push(indiceA, indiceB);
+			return listaIntervalo;
+		}
+		sinalResultComparator = sinalResult;
+		indiceA = list_valores[i].indice;
+	}
+	return listaIntervalo;
 }
 
-function main(x5, x4, x3, x2, x1) {
-    var listresult = [];
-    for (i = -5; i <= 5; i++) {
-        listresult.push(resolver_equacao(x5, x4, x3, x2, x1, i));
-    }
-    listaIntervalo = gera_intervalo(listresult);
-    return listresult;
+function resolver_bisseca(intervalo1, intervalo2, expo) {
+	var epslon = Math.pow(10, expo);
+	var Maisproximo = false;
+	var rr = 0;
+	var k = 0;
+	while (Maisproximo == false) {
+		rr = in1 = (intervalo1 + intervalo2) / 2;
+		if (k % 2 == 0) {
+			intervalo2 = in1;
+		} else {
+			intervalo1 = in1;
+		}
+		var ss = intervalo1 - intervalo2;
+		if (ss < 0) {
+			ss = ss * -1;
+		}
+		if (ss > epslon) {
+			Maisproximo = false;
+		} else {
+			Maisproximo = true;
+		}
+		k = k + 1;
+	}
+	return rr;
 }
 
+function main(x5, x4, x3, x2, x1, numero, eps) {
+	var list_valores_equacao = [];
+	for (i = -5; i <= 4; i++) {
+		var valor_equacao = {
+			indice: i,
+			valor: resolver_equacao(x5, x4, x3, x2, x1, numero, i)
+		};
+		list_valores_equacao.push(valor_equacao);
+	}
+	var lista_intervalo = find_intervalo_raiz(list_valores_equacao);
+	var result_bisscao = resolver_bisseca(
+		lista_intervalo[0],
+		lista_intervalo[1],
+		eps
+	);
+	return result_bisscao;
+}
 
-main("-3.72", "+5.321", "-10.91", "-5.2", "-7");
+x = main("0", "0", "1", "0", "-9", 3, -3);
+resolver_bisseca(0, 1, -3);
