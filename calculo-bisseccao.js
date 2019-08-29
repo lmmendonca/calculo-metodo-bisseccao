@@ -4,12 +4,6 @@ $(document).ready(function() {
   });
 });
 
-$(document).ready(function() {
-  $("#btn").click(function() {
-    $("#test").text(enviar());
-  });
-});
-
 function resolver_equacao(x5, x4, x3, x2, x1, numero, valor_x) {
   x1 = parseFloat(x1 * Math.pow(valor_x, 1));
   x2 = parseFloat(x2 * Math.pow(valor_x, 2));
@@ -87,11 +81,11 @@ function main(x5, x4, x3, x2, x1, numero, eps) {
   );
 
   var objectResult = {
-    "Valores": list_valores_equacao,
-    "Intervalo": lista_intervalo,
-    "Resultado : ": result_bisscao
+    Valores: list_valores_equacao,
+    Intervalo: lista_intervalo,
+    Resultado: result_bisscao
   };
-
+  
   return objectResult;
 }
 
@@ -104,5 +98,21 @@ function enviar() {
   number = parseInt(document.getElementById("number").value);
   epsilon = parseInt(document.getElementById("epsilon").value);
   result = main(x5, x4, x3, x2, x1, number, epsilon);
-  return result;
+  return JSON.stringify(result);
 }
+
+function convetjsonToHTML(){
+  var resultadoJson = enviar();
+  for (var j = 0; j < resultadoJson.length; j++) {
+      var table = document.getElementById("myTable");
+      var row = table.insertRow(j);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);  
+      cell1.innerHTML =  Object.values(resultadoJson),
+      cell2.innerHTML = student.rank,
+      cell3.innerHTML = student.stuclass;
+  }
+}
+
+// main(1,1,1,1,1,1,1);
