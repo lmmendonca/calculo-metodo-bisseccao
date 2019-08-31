@@ -39,6 +39,7 @@ function find_intervalo_raiz(list_valores) {
 
 function resolver_bisseca(intervalo1, intervalo2, expo) {
   var epslon = Math.pow(10, expo);
+  console.log(epslon);
   var Maisproximo = false;
   var rr = 0;
   var k = 0;
@@ -85,7 +86,9 @@ function main(x5, x4, x3, x2, x1, numero, eps) {
     Intervalo: lista_intervalo,
     Resultado: result_bisscao
   };
-  
+
+  addtable(objectResult);
+    
   return objectResult;
 }
 
@@ -115,4 +118,21 @@ function convetjsonToHTML(){
   }
 }
 
-// main(1,1,1,1,1,1,1);
+function addtable(tableResult){
+  removetable();
+  for(i=0; i<tableResult.Valores.length; i++){
+    $('#tableb').append("<tr><th scope='row'>" + tableResult.Valores[i].indice + "</th><th>" + tableResult.Valores[i].valor + "</th><td>");     
+  }
+}
+
+function removetable(){
+  var table = document.getElementById("table");
+  for(var i = table.rows.length - 1; i > 0; i--)
+  {
+      table.deleteRow(i);
+  }
+}
+
+function addresult(result){
+  $('#valor-test').text(result);
+}
